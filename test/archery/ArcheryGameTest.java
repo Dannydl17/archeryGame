@@ -132,6 +132,38 @@ class ArcheryGameTest {
         archeryGame.play(qudus);
         System.out.println(Arrays.deepToString(archeryGame.getBoard()));
         assertThrows(NoSpaceFoundException.class, ()-> archeryGame.play(tobi));
+    } @Test
+    public void testThatWhenFourPlayerPlaysTheWholeGameLevelWhichIsThreeWeCanGetTheScoreOfEachPlayer(){
+        ArcheryGame archeryGame = new ArcheryGame();
+        archeryGame.registerPlayer("Daniel");
+        archeryGame.registerPlayer("Tobi");
+        archeryGame.registerPlayer("Delight");
+        archeryGame.registerPlayer("Qudus");
+        Player daniel = archeryGame.getPlayers()[0];
+        Player tobi = archeryGame.getPlayers()[1];
+        Player delight = archeryGame.getPlayers()[2];
+        Player qudus = archeryGame.getPlayers()[3];
+        archeryGame.play(daniel);
+        archeryGame.play(tobi);
+        archeryGame.play(delight);
+        archeryGame.play(qudus);
+        assertEquals(2, archeryGame.getLevel());
+        archeryGame.play(daniel);
+        archeryGame.play(tobi);
+        archeryGame.play(delight);
+        archeryGame.play(qudus);
+        assertEquals(3, archeryGame.getLevel());
+        archeryGame.play(daniel);
+        archeryGame.play(tobi);
+        archeryGame.play(delight);
+        archeryGame.play(qudus);
+        assertNotNull(daniel.getScoreOfPlayer());
+        assertNotNull(tobi.getScoreOfPlayer());
+        assertNotNull(qudus.getScoreOfPlayer());
+        assertNotNull(delight.getScoreOfPlayer());
     }
+
+
+
 
 }
